@@ -1,0 +1,49 @@
+.weekday {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 9px 9px 0 9px;
+  font-size: 12px;
+  color: #9096a3;
+  justify-items: center;
+  font-family: 'Roboto';
+  font-weight: 400;
+}
+
+.daysMonth {
+  font-size: 12px;
+  color: #6a7180;
+  font-family: 'Roboto';
+  font-weight: 500;
+
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 12px 9px;
+  row-gap: 15px;
+}
+.footer {
+  display: flex;
+  justify-content: center;
+  border-top: 1.5px solid #6a7180;
+}
+.btnConfirm,
+.btnCancel {
+  padding: 10px 15px;
+  flex-grow: 1;
+  font-size: 12px;
+  font-family: 'Roboto';
+  font-weight: 400;
+}
+.btnConfirm {
+  background-color: #6484c5;
+  border: 1px solid #647cab;
+  border-radius: 2px;
+  color: #ffffff;
+}
+.btnCancel {
+  background-color: #d9dbe1;
+  color: #687793;
+}
+.currentMonthName {
+  cursor: pointer;
+}
