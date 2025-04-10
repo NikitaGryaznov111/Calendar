@@ -1,0 +1,11 @@
+@mixin currentDateHeader {
+  border-right: 1px solid #43577e;
+  font-size: 14px;
+  font-family: 'Roboto';
+  font-weight: 500;
+  color: #7d8ca7;
+  padding: 9px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
