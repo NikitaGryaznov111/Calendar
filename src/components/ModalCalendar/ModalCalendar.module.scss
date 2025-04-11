@@ -29,9 +29,13 @@
     display: none;
   }
 }
-.year {
-  width: 35%;
+.monthInactive {
+  width: 50%;
   @include currentDateHeader;
+  justify-content: center;
+  & button {
+    display: none;
+  }
 }
 .btnPrevMonth,
 .btnPrevYear {
@@ -51,5 +55,28 @@
 }
 
 .currentMonthName {
+  cursor: pointer;
+}
+.year {
+  width: 35%;
+  @include currentDateHeader;
+}
+.yearActive {
+  width: 35%;
+  background-color: #6f7dad;
+  border-right: 1px solid #43577e;
+  font-size: 14px;
+  font-family: 'Roboto';
+  font-weight: 500;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & button {
+    display: none;
+  }
+}
+.currentYear {
   cursor: pointer;
 }

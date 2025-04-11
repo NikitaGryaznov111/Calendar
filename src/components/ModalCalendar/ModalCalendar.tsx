@@ -1,13 +1,17 @@
-import { FC, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import { namesMonth } from '../../data/data';
-import styles from './ModalCalendar.module.scss';
 import ListMonths from '../ListMonths/ListMonths';
 import ListDays from '../ListDays/ListDays';
+import ListYears from '../ListYears/ListYears';
+import styles from './ModalCalendar.module.scss';
+
 const ModalCalendar: FC = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [currentMonth, setCurrentMonth] = useState<boolean>(false);
+  const [currentYear, setCurrentYear] = useState<boolean>(false);
+  const ref = useRef(null);
   const currentMonthName = namesMonth[currentDate.getMonth()];
-  const currentYear = currentDate.getFullYear();
+  const fullYear = currentDate.getFullYear();
   const prevMonth = (): void => {
     setCurrentDate(
       (prevDate) => new Date(prevDate.getFullYear(), prevDate.getMonth() - 1, 1)
@@ -29,22 +33,34 @@ const ModalCalendar: FC = () => {
     );
   };
 
-  const selectMonth = () => {
+  const selectMonth = (): void => {
     setCurrentMonth(true);
+    setCurrentYear(false);
+  };
+  const selectYear = () => {
+    setCurrentYear(true);
+    (ref.current as unknown as HTMLDivElement).className = styles.monthInactive;
+
+    setCurrentMonth(false);
   };
   return (
     <div className={styles.calendar}>
       <div className={styles.header}>
-        <div className={currentMonth ? styles.monthActive : styles.month}>
+        <div
+          ref={ref}
+          className={currentMonth ? styles.monthActive : styles.month}
+        >
           <button onClick={prevMonth} className={styles.btnPrevMonth}></button>
           <span onClick={selectMonth} className={styles.currentMonthName}>
             {currentMonthName}
           </span>
           <button onClick={nextMonth} className={styles.btnNextMonth}></button>
         </div>
-        <div className={styles.year}>
+        <div className={currentYear ? styles.yearActive : styles.year}>
           <button onClick={prevYear} className={styles.btnPrevYear}></button>
-          {currentYear}
+          <span onClick={selectYear} className={styles.currentYear}>
+            {fullYear}
+          </span>
           <button onClick={nextYear} className={styles.btnNextYear}></button>
         </div>
         {/* <div className={styles.time}></div> */}
@@ -55,7 +71,17 @@ const ModalCalendar: FC = () => {
           setCurrentMonth={setCurrentMonth}
         />
       ) : (
-        <ListDays currentDate={currentDate} />
+        <>
+          {currentYear ? (
+            <ListYears
+              setCurrentDate={setCurrentDate}
+              setCurrentMonth={setCurrentMonth}
+              setCurrentYear={setCurrentYear}
+            />
+          ) : (
+            <ListDays currentDate={currentDate} />
+          )}
+        </>
       )}
     </div>
   );
