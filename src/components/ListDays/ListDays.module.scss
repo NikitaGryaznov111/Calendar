@@ -19,7 +19,6 @@
   justify-items: center;
   grid-template-columns: repeat(7, 1fr);
   padding: 12px 9px;
-  row-gap: 15px;
 }
 .footer {
   display: flex;
@@ -44,6 +43,17 @@
   background-color: #d9dbe1;
   color: #687793;
 }
-.currentMonthName {
+.currentMonthName,
+.dayMonth {
   cursor: pointer;
+}
+.dayMonth {
+  padding: 8px 5px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.active {
+  background-color: #6f7dad;
+  color: #ffffff;
 }

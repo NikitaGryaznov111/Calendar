@@ -1,11 +1,10 @@
-import './App.css';
-import ModalCalendar from './components/ModalCalendar/ModalCalendar';
+import InputDate from './components/InputDate/InputDate';
 
 function App() {
   return (
-    <>
-      <ModalCalendar />
-    </>
+    <div className="App">
+      <InputDate />
+    </div>
   );
 }
 

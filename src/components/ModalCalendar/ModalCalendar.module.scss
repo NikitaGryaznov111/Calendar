@@ -1,10 +1,16 @@
 @import '../../styles/mixins.scss';
 .calendar {
-  max-width: 268px;
+  display: none;
+}
+.calendarActive {
+  position: absolute;
+  bottom: 15px;
+  right: 78px;
+  display: block;
+  width: 268px;
   max-height: 340px;
   border: 1px solid #43577e;
 }
-
 .header {
   display: flex;
   background-color: #f2f4fd;

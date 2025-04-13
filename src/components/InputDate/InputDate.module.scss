@@ -1,0 +1,96 @@
+input[type='date']::-webkit-inner-spin-button,
+input[type='date']::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+input::placeholder {
+  color: #c4c4c4;
+}
+.wrapper {
+  position: relative;
+  width: 268px;
+}
+.wrapperDate {
+  width: 190px;
+  max-height: 14px;
+  position: relative;
+
+  &:hover .btnClear {
+    position: absolute;
+    display: block;
+    top: 80%;
+    right: 28px;
+    width: 12px;
+    height: 12px;
+    &::after,
+    &::before {
+      content: '';
+      display: inline-block;
+      background-color: #6f7dad;
+      position: absolute;
+      top: 20%;
+      content: ' ';
+      height: 8px;
+      width: 1px;
+      background-color: #6f7dad;
+      border-radius: 5px;
+    }
+    &::after {
+      transform: rotate(-45deg);
+    }
+    &::before {
+      transform: rotate(45deg);
+    }
+  }
+}
+.text,
+.date {
+  width: 100%;
+  max-height: 14px;
+  border-radius: 4px;
+  background-color: #f2f4fd;
+  padding: 17px 8px;
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 12px;
+
+  &:hover {
+    background-color: #e7e9f0ed;
+    &::placeholder {
+      color: #7d8ca7;
+    }
+  }
+}
+.text {
+  &:hover::placeholder {
+    color: #7d8ca7;
+  }
+}
+.btnClear {
+  display: none;
+}
+
+.btnIconCalendar {
+  background-image: url('../../icons/icon.svg');
+  background-repeat: no-repeat;
+  width: 8px;
+  height: 9px;
+  position: absolute;
+  top: 90%;
+  right: 8px;
+}
+
+.errorInput {
+  background-color: #faf2f2;
+  width: 100%;
+  max-height: 14px;
+  border-radius: 4px;
+  padding: 17px 8px;
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 12px;
+  border: 1px solid #d7a3a3;
+  &::placeholder {
+    color: #b16464;
+  }
+}

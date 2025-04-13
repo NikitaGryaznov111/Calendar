@@ -4,18 +4,37 @@ import { namesMonth } from '../../data/data';
 type Props = {
   setCurrentDate: Dispatch<SetStateAction<Date>>;
   setCurrentMonth: Dispatch<SetStateAction<boolean>>;
+  setModal: Dispatch<SetStateAction<boolean>>;
+  currentDate: Date;
+  inputText: string;
+  setErrorInputText: Dispatch<SetStateAction<boolean>>;
 };
-const ListMonths: FC<Props> = ({ setCurrentDate, setCurrentMonth }: Props) => {
+const ListMonths: FC<Props> = ({
+  setCurrentDate,
+  setCurrentMonth,
+  setModal,
+  currentDate,
+  inputText,
+  setErrorInputText,
+}: Props) => {
+  const currentMonthName = namesMonth[currentDate.getMonth()];
+
   const ref = useRef(null);
-  const selectNameMonth = (e: any) => {
+  const selectNameMonth = (e: any): void => {
     ref.current = e.target;
-  };
-  const handleBtnConfirm = (): void => {
     const nameSelectMonth = (ref.current as unknown as HTMLLIElement)
       .textContent;
     const month = namesMonth.indexOf(nameSelectMonth as string);
     setCurrentDate((prevDate) => new Date(prevDate.getFullYear(), month, 1));
+  };
+  const handleBtnConfirm = (): void => {
     setCurrentMonth(false);
+  };
+  const handleBtnCancelled = (): void => {
+    setModal(false);
+    if (!inputText) {
+      setErrorInputText(true);
+    }
   };
   return (
     <div>
@@ -24,7 +43,9 @@ const ListMonths: FC<Props> = ({ setCurrentDate, setCurrentMonth }: Props) => {
           return (
             <li
               onClick={selectNameMonth}
-              className={styles.monthName}
+              className={`${styles.monthName} ${
+                currentMonthName === month ? styles.active : null
+              }`}
               key={index}
               tabIndex={1}
             >
@@ -37,7 +58,9 @@ const ListMonths: FC<Props> = ({ setCurrentDate, setCurrentMonth }: Props) => {
         <button onClick={handleBtnConfirm} className={styles.btnConfirm}>
           Подтвердить
         </button>
-        <button className={styles.btnCancel}>Отменить</button>
+        <button onClick={handleBtnCancelled} className={styles.btnCancel}>
+          Отменить
+        </button>
       </div>
     </div>
   );

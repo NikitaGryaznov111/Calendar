@@ -5,13 +5,21 @@ type Props = {
   setCurrentDate: Dispatch<SetStateAction<Date>>;
   setCurrentMonth: Dispatch<SetStateAction<boolean>>;
   setCurrentYear: Dispatch<SetStateAction<boolean>>;
+  setModal: Dispatch<SetStateAction<boolean>>;
+  currentDate: Date;
+  inputText: string;
+  setErrorInputText: Dispatch<SetStateAction<boolean>>;
 };
 const ListYears: FC<Props> = ({
   setCurrentDate,
   setCurrentMonth,
   setCurrentYear,
+  setModal,
+  currentDate,
+  inputText,
+  setErrorInputText,
 }: Props) => {
-  const currentYear: number = new Date().getFullYear();
+  const currentYear: number = currentDate.getFullYear();
   const [displayedYear, setDisplayedYear] = useState(currentYear);
   const [listYears, setListYears] = useState<number[]>([]);
 
@@ -36,6 +44,12 @@ const ListYears: FC<Props> = ({
     setCurrentMonth(true);
     setCurrentYear(false);
   };
+  const handleBtnCancelled = (): void => {
+    setModal(false);
+    if (!inputText) {
+      setErrorInputText(true);
+    }
+  };
   return (
     <div>
       <ul className={styles.listYears}>
@@ -58,7 +72,9 @@ const ListYears: FC<Props> = ({
         <button onClick={handleBtnConfirm} className={styles.btnConfirm}>
           Подтвердить
         </button>
-        <button className={styles.btnCancel}>Отменить</button>
+        <button onClick={handleBtnCancelled} className={styles.btnCancel}>
+          Отменить
+        </button>
       </div>
     </div>
   );
