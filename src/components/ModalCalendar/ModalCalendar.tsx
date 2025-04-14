@@ -58,10 +58,8 @@ const ModalCalendar: FC<TPropsModal> = ({
     setCurrentMonth(true);
     setCurrentYear(false);
   };
-  const selectYear = () => {
+  const selectYear = (): void => {
     setCurrentYear(true);
-    (ref.current as unknown as HTMLDivElement).className = styles.monthInactive;
-
     setCurrentMonth(false);
   };
   return (
