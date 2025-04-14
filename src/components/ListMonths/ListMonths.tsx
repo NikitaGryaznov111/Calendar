@@ -1,29 +1,22 @@
-import { Dispatch, FC, SetStateAction, useRef } from 'react';
-import styles from './ListMonths.module.scss';
+import { FC, useRef } from 'react';
 import { namesMonth } from '../../data/data';
-type Props = {
-  setCurrentDate: Dispatch<SetStateAction<Date>>;
-  setCurrentMonth: Dispatch<SetStateAction<boolean>>;
-  setModal: Dispatch<SetStateAction<boolean>>;
-  currentDate: Date;
-  inputText: string;
-  setErrorInputText: Dispatch<SetStateAction<boolean>>;
-};
-const ListMonths: FC<Props> = ({
+import { TPropsMonth } from '../../types/types';
+import styles from './ListMonths.module.scss';
+
+const ListMonths: FC<TPropsMonth> = ({
   setCurrentDate,
   setCurrentMonth,
   setModal,
   currentDate,
   inputText,
-  setErrorInputText,
-}: Props) => {
+  setErrorInput,
+}: TPropsMonth) => {
   const currentMonthName = namesMonth[currentDate.getMonth()];
 
-  const ref = useRef(null);
-  const selectNameMonth = (e: any): void => {
-    ref.current = e.target;
-    const nameSelectMonth = (ref.current as unknown as HTMLLIElement)
-      .textContent;
+  const ref = useRef<HTMLLIElement>(null);
+  const selectNameMonth = (e: React.MouseEvent<HTMLLIElement>): void => {
+    ref.current = e.target as HTMLLIElement;
+    const nameSelectMonth = ref.current.textContent;
     const month = namesMonth.indexOf(nameSelectMonth as string);
     setCurrentDate((prevDate) => new Date(prevDate.getFullYear(), month, 1));
   };
@@ -33,7 +26,7 @@ const ListMonths: FC<Props> = ({
   const handleBtnCancelled = (): void => {
     setModal(false);
     if (!inputText) {
-      setErrorInputText(true);
+      setErrorInput(true);
     }
   };
   return (

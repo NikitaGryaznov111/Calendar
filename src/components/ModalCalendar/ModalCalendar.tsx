@@ -1,34 +1,20 @@
-import {
-  Dispatch,
-  FC,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { namesMonth } from '../../data/data';
 import ListMonths from '../ListMonths/ListMonths';
 import ListDays from '../ListDays/ListDays';
 import ListYears from '../ListYears/ListYears';
+import { TPropsModal } from '../../types/types';
 import styles from './ModalCalendar.module.scss';
-type Props = {
-  modal: boolean;
-  setInputDate: Dispatch<SetStateAction<string>>;
-  setInputText: Dispatch<SetStateAction<string>>;
-  setModal: Dispatch<SetStateAction<boolean>>;
-  inputDate: string;
-  inputText: string;
-  setErrorInputText: Dispatch<SetStateAction<boolean>>;
-};
-const ModalCalendar: FC<Props> = ({
+
+const ModalCalendar: FC<TPropsModal> = ({
   modal,
   setInputDate,
   setInputText,
   inputDate,
   setModal,
   inputText,
-  setErrorInputText,
-}: Props) => {
+  setErrorInput,
+}: TPropsModal) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [currentMonth, setCurrentMonth] = useState<boolean>(false);
   const [currentYear, setCurrentYear] = useState<boolean>(false);
@@ -107,7 +93,7 @@ const ModalCalendar: FC<Props> = ({
           currentDate={currentDate}
           setModal={setModal}
           inputText={inputText}
-          setErrorInputText={setErrorInputText}
+          setErrorInput={setErrorInput}
         />
       ) : (
         <>
@@ -119,7 +105,7 @@ const ModalCalendar: FC<Props> = ({
               currentDate={currentDate}
               setModal={setModal}
               inputText={inputText}
-              setErrorInputText={setErrorInputText}
+              setErrorInput={setErrorInput}
             />
           ) : (
             <ListDays
@@ -129,7 +115,7 @@ const ModalCalendar: FC<Props> = ({
               setInputDate={setInputDate}
               setModal={setModal}
               inputText={inputText}
-              setErrorInputText={setErrorInputText}
+              setErrorInput={setErrorInput}
             />
           )}
         </>

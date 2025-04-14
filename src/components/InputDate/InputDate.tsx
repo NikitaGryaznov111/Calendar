@@ -7,10 +7,12 @@ const InputDate: FC = () => {
   const [inputDate, setInputDate] = useState(inputText);
   const [toggle, setToggle] = useState<boolean>(true);
   const [modal, setModal] = useState<boolean>(false);
-  const [errorInputText, setErrorInputText] = useState<boolean>(false);
+  const [errorInput, setErrorInput] = useState<boolean>(false);
+
   const handleInputDate = (event: any): void => {
     const value = event.target.value;
     setInputDate(value);
+    setErrorInput(false);
   };
   const handleInputText = (): void => {
     setToggle(false);
@@ -29,7 +31,7 @@ const InputDate: FC = () => {
       <div className={styles.wrapperDate}>
         {toggle ? (
           <input
-            className={`${errorInputText ? styles.errorInput : styles.text}`}
+            className={`${errorInput ? styles.error : styles.text}`}
             type="text"
             placeholder="Выберите дату"
             onClick={handleInputText}
@@ -38,9 +40,8 @@ const InputDate: FC = () => {
           />
         ) : (
           <input
-            className={styles.date}
+            className={`${errorInput ? styles.error : styles.date}`}
             type="date"
-            placeholder="Выберите дату"
             value={inputDate}
             onChange={handleInputDate}
           />
@@ -63,7 +64,7 @@ const InputDate: FC = () => {
         inputDate={inputDate}
         setModal={setModal}
         inputText={inputText}
-        setErrorInputText={setErrorInputText}
+        setErrorInput={setErrorInput}
       />
     </div>
   );

@@ -8,17 +8,25 @@ input::placeholder {
 }
 .wrapper {
   position: relative;
-  width: 268px;
+  width: 160px;
+  &:hover .text::placeholder {
+    color: #7d8ca7;
+  }
+  &:hover .text {
+    background-color: #e7e9f0ed;
+  }
+  &:hover .date {
+    background-color: #e7e9f0ed;
+  }
 }
 .wrapperDate {
-  width: 190px;
-  max-height: 14px;
+  width: 100%;
   position: relative;
 
   &:hover .btnClear {
     position: absolute;
     display: block;
-    top: 80%;
+    top: 35%;
     right: 28px;
     width: 12px;
     height: 12px;
@@ -46,26 +54,14 @@ input::placeholder {
 .text,
 .date {
   width: 100%;
-  max-height: 14px;
   border-radius: 4px;
   background-color: #f2f4fd;
-  padding: 17px 8px;
+  padding: 10px 8px;
   font-family: 'Roboto';
   font-weight: 400;
   font-size: 12px;
+}
 
-  &:hover {
-    background-color: #e7e9f0ed;
-    &::placeholder {
-      color: #7d8ca7;
-    }
-  }
-}
-.text {
-  &:hover::placeholder {
-    color: #7d8ca7;
-  }
-}
 .btnClear {
   display: none;
 }
@@ -76,12 +72,11 @@ input::placeholder {
   width: 8px;
   height: 9px;
   position: absolute;
-  top: 90%;
+  top: 40%;
   right: 8px;
 }
 
-.errorInput {
-  background-color: #faf2f2;
+.error {
   width: 100%;
   max-height: 14px;
   border-radius: 4px;
@@ -89,6 +84,8 @@ input::placeholder {
   font-family: 'Roboto';
   font-weight: 400;
   font-size: 12px;
+  color: #b16464;
+  background-color: #faf2f2;
   border: 1px solid #d7a3a3;
   &::placeholder {
     color: #b16464;

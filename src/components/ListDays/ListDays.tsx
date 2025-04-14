@@ -1,24 +1,17 @@
-import { Dispatch, FC, SetStateAction } from 'react';
+import { FC } from 'react';
 import { weekday } from '../../data/data';
+import { TPropsDays } from '../../types/types';
 import styles from './ListDays.module.scss';
-type Props = {
-  currentDate: Date;
-  setCurrentDate: Dispatch<SetStateAction<Date>>;
-  setInputText: Dispatch<SetStateAction<string>>;
-  setInputDate: Dispatch<SetStateAction<string>>;
-  setModal: Dispatch<SetStateAction<boolean>>;
-  inputText: string;
-  setErrorInputText: Dispatch<SetStateAction<boolean>>;
-};
-const ListDays: FC<Props> = ({
+
+const ListDays: FC<TPropsDays> = ({
   currentDate,
   setCurrentDate,
   setInputText,
   setInputDate,
   setModal,
   inputText,
-  setErrorInputText,
-}: Props) => {
+  setErrorInput,
+}: TPropsDays) => {
   const currentDay: number = currentDate.getDate();
   const getDaysOfMonth = (date: Date): (number | null)[] => {
     const year = date.getFullYear();
@@ -35,13 +28,15 @@ const ListDays: FC<Props> = ({
     return days;
   };
   const daysOfMonth = getDaysOfMonth(currentDate);
-  const selectDay = (e: any): void => {
+  const selectDay = (e: React.MouseEvent<HTMLLIElement>): void => {
+    const li = e.target as HTMLLIElement;
+
     setCurrentDate(
       (prevDate) =>
         new Date(
           prevDate.getFullYear(),
           prevDate.getMonth(),
-          Number(e.target.textContent)
+          Number(li.textContent)
         )
     );
   };
@@ -61,14 +56,13 @@ const ListDays: FC<Props> = ({
     setInputText(fullDateInputText);
     setInputDate(fullDateInputDate);
     setModal(false);
-    setErrorInputText(false);
+    setErrorInput(false);
   };
 
   const handleBtnCancelled = (): void => {
     setModal(false);
-    if (!inputText) {
-      setErrorInputText(true);
-    }
+
+    setErrorInput(true);
   };
   return (
     <div>

@@ -1,24 +1,16 @@
-import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { TPropsYears } from '../../types/types';
 import styles from './ListYears.module.scss';
 
-type Props = {
-  setCurrentDate: Dispatch<SetStateAction<Date>>;
-  setCurrentMonth: Dispatch<SetStateAction<boolean>>;
-  setCurrentYear: Dispatch<SetStateAction<boolean>>;
-  setModal: Dispatch<SetStateAction<boolean>>;
-  currentDate: Date;
-  inputText: string;
-  setErrorInputText: Dispatch<SetStateAction<boolean>>;
-};
-const ListYears: FC<Props> = ({
+const ListYears: FC<TPropsYears> = ({
   setCurrentDate,
   setCurrentMonth,
   setCurrentYear,
   setModal,
   currentDate,
   inputText,
-  setErrorInputText,
-}: Props) => {
+  setErrorInput,
+}: TPropsYears) => {
   const currentYear: number = currentDate.getFullYear();
   const [displayedYear, setDisplayedYear] = useState(currentYear);
   const [listYears, setListYears] = useState<number[]>([]);
@@ -33,11 +25,11 @@ const ListYears: FC<Props> = ({
     setListYears(years);
   }, [displayedYear]);
 
-  const selectYear = (e: any): void => {
-    setDisplayedYear(Number(e.target.textContent));
+  const selectYear = (e: React.MouseEvent<HTMLLIElement>): void => {
+    const li = e.target as HTMLLIElement;
+    setDisplayedYear(Number(li.textContent));
     setCurrentDate(
-      (prevDate) =>
-        new Date(Number(e.target.textContent), prevDate.getMonth(), 1)
+      (prevDate) => new Date(Number(li.textContent), prevDate.getMonth(), 1)
     );
   };
   const handleBtnConfirm = (): void => {
@@ -47,7 +39,7 @@ const ListYears: FC<Props> = ({
   const handleBtnCancelled = (): void => {
     setModal(false);
     if (!inputText) {
-      setErrorInputText(true);
+      setErrorInput(true);
     }
   };
   return (
