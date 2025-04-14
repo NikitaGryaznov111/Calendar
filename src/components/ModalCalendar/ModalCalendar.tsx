@@ -84,7 +84,6 @@ const ModalCalendar: FC<TPropsModal> = ({
           </span>
           <button onClick={nextYear} className={styles.btnNextYear}></button>
         </div>
-        {/* <div className={styles.time}></div> */}
       </div>
       {currentMonth ? (
         <ListMonths

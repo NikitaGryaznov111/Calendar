@@ -14,9 +14,12 @@
 .header {
   display: flex;
   background-color: #f2f4fd;
+  border-bottom: 1px solid #43577e;
 }
 .month {
   width: 50%;
+  border-right: 1px solid #43577e;
+
   @include currentDateHeader;
 }
 .monthActive {
@@ -64,13 +67,12 @@
   cursor: pointer;
 }
 .year {
-  width: 35%;
+  width: 50%;
   @include currentDateHeader;
 }
 .yearActive {
-  width: 35%;
+  width: 50%;
   background-color: #6f7dad;
-  border-right: 1px solid #43577e;
   font-size: 14px;
   font-family: 'Roboto';
   font-weight: 500;
