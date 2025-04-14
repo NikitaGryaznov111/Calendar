@@ -38,14 +38,7 @@
     display: none;
   }
 }
-.monthInactive {
-  width: 50%;
-  @include currentDateHeader;
-  justify-content: center;
-  & button {
-    display: none;
-  }
-}
+
 .btnPrevMonth,
 .btnPrevYear {
   width: 0;
