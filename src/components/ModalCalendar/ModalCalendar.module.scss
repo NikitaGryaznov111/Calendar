@@ -4,7 +4,7 @@
 }
 .calendarActive {
   position: absolute;
-  bottom: 34px;
+  bottom: 35px;
   right: 0;
   display: block;
   width: 268px;
@@ -24,7 +24,7 @@
 }
 .monthActive {
   width: 50%;
-  background-color: #6f7dad;
+  background-color: $activeCurrentDateBG;
   border-right: 1px solid #43577e;
   font-size: 14px;
   font-family: 'Roboto';
@@ -65,7 +65,7 @@
 }
 .yearActive {
   width: 50%;
-  background-color: #6f7dad;
+  background-color: $activeCurrentDateBG;
   font-size: 14px;
   font-family: 'Roboto';
   font-weight: 500;

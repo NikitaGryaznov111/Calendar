@@ -8,7 +8,6 @@ const ListMonths: FC<TPropsMonth> = ({
   setCurrentMonth,
   setModal,
   currentDate,
-  inputText,
   setErrorInput,
 }: TPropsMonth) => {
   const currentMonthName = namesMonth[currentDate.getMonth()];
@@ -25,9 +24,7 @@ const ListMonths: FC<TPropsMonth> = ({
   };
   const handleBtnCancelled = (): void => {
     setModal(false);
-    if (!inputText) {
-      setErrorInput(true);
-    }
+    setErrorInput(true);
   };
   return (
     <div>

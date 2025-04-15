@@ -9,7 +9,6 @@ const ListDays: FC<TPropsDays> = ({
   setInputText,
   setInputDate,
   setModal,
-  inputText,
   setErrorInput,
 }: TPropsDays) => {
   const currentDay: number = currentDate.getDate();

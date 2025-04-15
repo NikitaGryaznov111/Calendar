@@ -1,3 +1,4 @@
+@import './variables.scss';
 @mixin currentDateHeader {
   font-size: 14px;
   font-family: 'Roboto';
@@ -7,4 +8,73 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+@mixin inputDateThemes($theme) {
+  @if $theme == 'light' {
+    input::placeholder {
+      color: $placeholderColor-light;
+    }
+    .wrapper {
+      &:hover .text::placeholder {
+        color: $placeholderColorHover-light;
+      }
+      &:hover .text {
+        background-color: $inputBGHover-light;
+      }
+      &:hover .date {
+        background-color: $inputBGHover-light;
+      }
+    }
+
+    .text,
+    .date {
+      background-color: $inputBG-light;
+    }
+    .btnIconCalendar {
+      background-image: url('../../icons/iconCal-light.svg');
+    }
+
+    .error {
+      color: #b16464;
+      background-color: $errorBG-light;
+      border: 1px solid $errorBorderColor-light;
+      &::placeholder {
+        color: $placeholderErrorColor-light;
+      }
+    }
+  }
+  @if $theme == 'dark' {
+    input::placeholder {
+      color: $placeholderColor-dark;
+    }
+    .wrapper {
+      &:hover .text::placeholder {
+        color: $placeholderColorHover-dark;
+      }
+      &:hover .text {
+        background-color: $inputBGHover-dark;
+      }
+      &:hover .date {
+        background-color: $inputBGHover-dark;
+      }
+    }
+
+    .text,
+    .date {
+      background-color: $inputBG-dark;
+      color: $inputColor-dark;
+    }
+    .btnIconCalendar {
+      background-image: url('../../icons/iconCal-dark.svg');
+    }
+    .error {
+      color: #fac4c4;
+      background-color: $errorBG-dark;
+      border: 1px solid $errorBorderColor-dark;
+      &::placeholder {
+        color: $placeholderErrorColor-dark;
+      }
+    }
+  }
 }

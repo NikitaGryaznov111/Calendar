@@ -8,7 +8,6 @@ const ListYears: FC<TPropsYears> = ({
   setCurrentYear,
   setModal,
   currentDate,
-  inputText,
   setErrorInput,
 }: TPropsYears) => {
   const currentYear: number = currentDate.getFullYear();
@@ -38,9 +37,7 @@ const ListYears: FC<TPropsYears> = ({
   };
   const handleBtnCancelled = (): void => {
     setModal(false);
-    if (!inputText) {
-      setErrorInput(true);
-    }
+    setErrorInput(true);
   };
   return (
     <div>

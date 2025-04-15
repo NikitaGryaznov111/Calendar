@@ -3,14 +3,14 @@ import ModalCalendar from '../ModalCalendar/ModalCalendar';
 import styles from './InputDate.module.scss';
 
 const InputDate: FC = () => {
-  const [inputText, setInputText] = useState('');
+  const [inputText, setInputText] = useState<string>('');
   const [inputDate, setInputDate] = useState(inputText);
   const [toggle, setToggle] = useState<boolean>(true);
   const [modal, setModal] = useState<boolean>(false);
   const [errorInput, setErrorInput] = useState<boolean>(false);
 
-  const handleInputDate = (event: any): void => {
-    const value = event.target.value;
+  const handleInputDate = (e: any): void => {
+    const value = e.target.value;
     setInputDate(value);
     setErrorInput(false);
   };
